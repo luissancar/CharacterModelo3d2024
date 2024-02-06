@@ -2,17 +2,10 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
-<<<<<<< HEAD
-/projectSettingsUpdater.xml
-/contentModel.xml
-/.idea.CharacterModelo3d2024.iml
-/modules.xml
-=======
-/modules.xml
+/.idea.Player.iml
 /contentModel.xml
 /projectSettingsUpdater.xml
-/.idea.CharacterModelo3d2024.iml
->>>>>>> origin/main
+/modules.xml
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files
