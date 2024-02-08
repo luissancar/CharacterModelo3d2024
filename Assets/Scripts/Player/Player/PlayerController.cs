@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
         // Salto
           Saltar();
-        // Agachado();
+         Agachado();
     }
 
     void CambioCamara()
@@ -170,14 +170,14 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            anim.SetBool("Agachado", true);
+            anim.SetBool("agachado", true);
             ///////////////////todo
             velocidadMovimiento = velocidadAgachado;
             ///
         }
         else
         {
-            anim.SetBool("Agachado", false);
+            anim.SetBool("agachado", false);
             ///////////////////todo
             velocidadMovimiento = velocidaInicial;
             ///
