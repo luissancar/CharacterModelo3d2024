@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 ///
 public class PlayerController : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public float velocidadAgachado;
     //
 
-    //Golpeo
+    //Golpeo  Animación cross punch
     public bool estoyAtacando;
     public bool avanzoSolo;
     public float impulsoGolpe = 10f;
@@ -62,6 +63,10 @@ public class PlayerController : MonoBehaviour
         //Camaras
         cam1.enabled = true;
         cam2.enabled = false;
+
+        //Atacando
+        estoyAtacando = false;
+        avanzoSolo = false;
     }
 
     private void FixedUpdate()
@@ -82,20 +87,20 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Correr
-            Correr();
+        Correr();
 
 
         // leemos cursores
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
 
-        transform.Rotate(0, x * Time.deltaTime * velocidadRotacion, 0);
-        transform.Translate(0, 0, y * Time.deltaTime * velocidadMovimiento);
+        //transform.Rotate(0, x * Time.deltaTime * velocidadRotacion, 0);
+        //transform.Translate(0, 0, y * Time.deltaTime * velocidadMovimiento);
 
 
         CambioCamara();
         // Golpeo
-        //Golpeo();
+        Golpeo();
 
         //
 
@@ -105,8 +110,11 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("VelY", y);
 
         // Salto
-          Saltar();
-         Agachado();
+        if (!estoyAtacando)
+        {
+            Saltar();
+            Agachado();
+        }
     }
 
     void CambioCamara()
@@ -128,14 +136,14 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return) && puedoSaltar && !estoyAtacando)
         {
-            if (conArma)
+            /*   if (conArma)
+               {
+                   anim.SetTrigger("Golpeo2");
+                   estoyAtacando = true;
+               }
+               else*/
             {
-                anim.SetTrigger("Golpeo2");
-                estoyAtacando = true;
-            }
-            else
-            {
-                anim.SetTrigger("Golpeoo");
+                anim.SetTrigger("golpeo");
                 estoyAtacando = true;
             }
         }
@@ -152,7 +160,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-       //         anim.SetBool("Correr", false);
+                //         anim.SetBool("Correr", false);
                 if (puedoSaltar)
                 {
                     velocidadMovimiento = velocidaInicial;
@@ -161,7 +169,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-     //       anim.SetBool("Correr", false);
+            //       anim.SetBool("Correr", false);
             velocidadMovimiento = velocidaInicial;
         }
     }
