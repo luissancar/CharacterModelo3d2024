@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 ///
@@ -101,6 +102,7 @@ public class PlayerController : MonoBehaviour
         CambioCamara();
         // Golpeo
         Golpeo();
+        Patada();
 
         //
 
@@ -114,6 +116,18 @@ public class PlayerController : MonoBehaviour
         {
             Saltar();
             Agachado();
+        }
+    }
+
+    private void Patada()
+    {
+        if (Input.GetKeyDown(KeyCode.P) && puedoSaltar )
+        {
+           
+            {
+                anim.SetTrigger("patada");
+                estoyAtacando = true;
+            }
         }
     }
 

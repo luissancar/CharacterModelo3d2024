@@ -11,18 +11,19 @@ public class DetectarGolpe : MonoBehaviour
 
     // animacion
     public Animator anim;
-    public bool cerca;
+    public bool golpeado;
     public float distancia;
 
+    //sonido
+    private AudioSource sonido;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         anim = GetComponent<Animator>();
-        //float tiempoAleatorio = Random.Range(-0.9f, 1.5f);
-        //anim.speed = tiempoAleatorio;
-        cerca = false;
+        sonido = GetComponent<AudioSource>();
+        golpeado = false;
     }
 
 
@@ -30,16 +31,16 @@ public class DetectarGolpe : MonoBehaviour
     {
         distancia = Vector3.Distance(transform.position, player.transform.position);
         Debug.Log(distancia);
-        if (distancia < 4 && !cerca)
+        if (distancia < 4 )
         {
             anim.SetBool("Cerca", true);
-            cerca = true;
+           
         }
 
-        if (distancia >= 4 && cerca)
+        if (distancia >= 4)
         {
             anim.SetBool("Cerca", false);
-            cerca = false;
+           
         }
 
 
@@ -49,12 +50,15 @@ public class DetectarGolpe : MonoBehaviour
         }
     }
 
-
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "puno" && 
+            player.GetComponent<PlayerController>().estoyAtacando &&
+            !golpeado)
         {
+            sonido.Play();
             anim.SetTrigger("Golpeado");
+            golpeado = true;
         }
     }
 }
