@@ -15,6 +15,13 @@ public class LogicaObjetivos : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+
+
+    public void InicializarEsferas()
+    {
+        
         numDeObjetivos = GameObject.FindGameObjectsWithTag("objetivo").Length;
         textoMision.text = "Esferas restantes " + numDeObjetivos;
     }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - objetivo
   - puno
+  - Palo
   layers:
   - Default
   - TransparentFX
