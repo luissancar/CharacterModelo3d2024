@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
         CambioCamara();
         // Golpeo
         Golpeo();
-        Patada();
+        PatadaPalo();
 
         //
 
@@ -119,11 +119,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Patada()
+    private void PatadaPalo()
     {
-        if (Input.GetKeyDown(KeyCode.P) && puedoSaltar )
+        if (Input.GetKeyDown(KeyCode.P) && puedoSaltar)
         {
-           
+            if (gameObject.GetComponent<ObtenerPalo>().tengoPalo)
+            {
+                anim.SetTrigger("espada");
+                estoyAtacando = true;
+            }
+            else
             {
                 anim.SetTrigger("patada");
                 estoyAtacando = true;
